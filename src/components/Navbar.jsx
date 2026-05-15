@@ -1,9 +1,11 @@
 import { useState } from "react";
-
+import { Link } from "react-router"; 
 function Navbar() {
+  const storedUser = JSON.parse(
+  localStorage.getItem("username")
+);
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartCount] = useState(3); // wire to your cart state
-
   return (
     <>
       <style>{css}</style>
@@ -11,7 +13,6 @@ function Navbar() {
       <nav className="nb-nav">
         <div className="nb-inner">
 
-          {/* ── Logo ── */}
           <a href="/" className="nb-logo">
             <div className="nb-logo-mark">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -22,6 +23,7 @@ function Navbar() {
             </div>
             <span className="nb-logo-text">Bol Eccommerce</span>
           </a>
+         
 
           {/* ── Search bar ── */}
           <div className="nb-search">
@@ -52,14 +54,16 @@ function Navbar() {
 
             {/* Cart */}
             <button className="nb-icon-btn" aria-label="Cart">
+              <Link to={"/cart"}>
               <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" />
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
               </svg>
               {cartCount > 0 && <span className="nb-badge">{cartCount}</span>}
+              </Link>
             </button>
-
             {/* Sign in (desktop) */}
+             {storedUser && <span style={{ marginLeft: "8px", fontSize: "13px", color: "#6b7280" }}>Hello, {storedUser.username}</span>}
             <a href="/login" className="nb-signin">Sign in</a>
 
             {/* Hamburger (mobile) */}
@@ -152,7 +156,8 @@ const css = `
   .nb-mobile-menu { display: none; flex-direction: column; gap: 2px; padding: 0.75rem 1.25rem 1rem; border-top: 1px solid #e5e7eb; background: #fff; }
   .nb-mobile-open { display: flex; }
   .nb-mobile-search { max-width: 100% !important; margin-bottom: 6px; }
-  .nb-mobile-link { font-size: 15px; font-weight: 500; color: #374151; text-decoration: none; padding: 10px 8px; border-radius: 8px; display: block; border-bottom: 1px solid #f3f4f6; transition: color 0.15s; }
+  .nb-mobile-link { font-size: 15px; foimport { Link } from 'react-router-dom';
+nt-weight: 500; color: #374151; text-decoration: none; padding: 10px 8px; border-radius: 8px; display: block; border-bottom: 1px solid #f3f4f6; transition: color 0.15s; }
   .nb-mobile-link:hover { color: #534AB7; }
   .nb-mobile-signin { margin-top: 10px; height: 40px; background: #534AB7; color: #fff; border-radius: 8px; font-size: 14px; font-weight: 500; text-decoration: none; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
   .nb-mobile-signin:hover { background: #3C3489; }

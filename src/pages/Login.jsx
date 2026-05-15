@@ -18,6 +18,7 @@ function Login() {
       const res = await loginUser(user);
       if (res.data) {
         setIsLoggedIn(true);
+        window.location.href ="/";
       } else {
         setIsLoggedIn(false);
         alert("Login failed ❌");
@@ -268,7 +269,7 @@ const styles = {
   forgotLink: {
     fontSize: 13, color: "#534AB7", textDecoration: "none",
   },
-  submitBtn: {
+  submitBtn: { 
     height: 38,
     background: "#534AB7",
     color: "#fff", border: "none",

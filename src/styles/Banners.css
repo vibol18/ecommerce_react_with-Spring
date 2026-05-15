@@ -1,0 +1,58 @@
+/* Container handles the total height of Image + Text */
+.banner-container {
+  width: 100%;
+  height: 150%;
+  margin: 0 auto;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.banner-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 12px;
+}
+
+.banner-image-wrapper {
+  width: 100%;
+  height: 100%; /* Adjust this height based on your preference */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-image {
+
+  width: 100%;
+  height: 500px;
+  object-fit: contain; /* SHOWS FULL IMAGE without cropping */
+  display: block;
+}
+
+/* Description Styling Under the Photo */
+.banner-content {
+  padding: 16px 10px 40px 10px; /* Extra bottom padding for pagination space */
+  text-align: center;
+}
+
+.banner-title {
+  color: #1f2937;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.banner-description {
+  color: #6b7280;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+
+/* Tablet & Mobile */
+@media (max-width: 768px) {
+  .banner-image-wrapper { height: 180px; }
+  .banner-title { font-size: 16px; }
+}

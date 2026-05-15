@@ -1,7 +1,9 @@
+import { addToCart } from "../services/CartService";
 import { useEffect, useState } from "react";
 import { getProducts } from "../services/productService";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Banner from "../components/Banner";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -13,6 +15,7 @@ function Products() {
     price: "All Prices",
     sort: "New In",
   });
+
 
   useEffect(() => {
     fetchProducts();
@@ -35,6 +38,22 @@ function Products() {
 
   const colorDots = ["#F4D03F", "#94A3B8", "#6B7280", "#1F2937"];
 
+
+  const handleAddToCart = async (products)=>{
+    const cartItem = {
+      productName: products.name,
+    price: products.price,
+    quantity: 1,
+    imageUrl: products.imageUrl
+    };
+    try{
+      await addToCart(cartItem);
+      alert ("add to cart")
+    }catch(err)
+    {
+      console.log(err);
+    }
+  }
   return (
     <div className="min-h-screen bg-white">
       <style>{`
@@ -280,6 +299,7 @@ function Products() {
       `}</style>
 
       <Navbar  />
+      <Banner />
       <br/>
       <main className="px-8 lg:px-16 py-0">
         <div className="max-w-7xl mx-auto">
@@ -405,9 +425,21 @@ function Products() {
                   <p className="product-description">
                     Premium quality material
                   </p>
-                  <p className="product-price">
-                    ${product.price.toFixed(2)}
-                  </p>
+                 <div className="flex items-center justify-between mt-4">
+  
+  <p className="text-lg font-bold text-green-600">
+    ${product.price.toFixed(2)}
+  </p>
+
+  <button
+  onClick={() => handleAddToCart(product)}
+  className="bg-green-500 text-white px-4 py-2 rounded-lg"
+>
+  Add to Cart
+</button>
+
+</div>
+                  
                 </div>
               ))}
             </div>
